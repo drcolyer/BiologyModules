@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 4: Plant Systems | Dr. Colyer Biology</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose:        #FF4D8D;
+    --violet:      #9B5DE5;
+    --sky:         #00C2FF;
+    --lime:        #B5EF23;
+    --amber:       #FFB703;
+    --coral:       #FF6B6B;
+    --teal:        #06D6A0;
+    --indigo:      #3A0CA3;
+    --white:       #FFFFFF;
+    --off-white:   #FFF9FE;
+    --dark:        #1a1028;
+    --card-bg:     rgba(255,255,255,0.92);
+    --shadow:      0 8px 32px rgba(155,93,229,0.18);
+    --radius:      18px;
+    --radius-sm:   10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #ffe6f0 0%, #e8f4ff 30%, #f0ffe8 60%, #fff5e6 100%);
+    min-height: 100vh;
+    color: var(--dark);
+  }
+
+  /* ========= HEADER ========= */
+  .site-header {
+    background: linear-gradient(120deg, var(--violet) 0%, var(--rose) 50%, var(--amber) 100%);
+    padding: 0 0 0 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .header-inner {
+    position: relative; z-index: 2;
+    padding: 32px 24px 0;
+  }
+  .module-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50px;
+    padding: 6px 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .site-header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    color: white;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .teks-banner {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(6px);
+    border-top: 1px solid rgba(255,255,255,0.35);
+    border-bottom: 1px solid rgba(255,255,255,0.35);
+    padding: 14px 24px;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.97);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .teks-banner strong { color: var(--lime); font-size: 1rem; }
+
+  /* flower deco */
+  .flower-row {
+    display: flex; justify-content: center; gap: 18px;
+    padding: 16px 0 0;
+    font-size: 2rem;
+    animation: sway 3s ease-in-out infinite;
+  }
+  @keyframes sway {
+    0%,100%{transform:rotate(-3deg)} 50%{transform:rotate(3deg)}
+  }
+
+  /* ========= TABS ========= */
+  .tabs-wrapper {
+    background: linear-gradient(135deg, #ffe6f5 0%, #ede0ff 50%, #e0f4ff 100%);
+    border-bottom: 3px solid var(--rose);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 16px rgba(255,77,141,0.15);
+  }
+  .tabs {
+    display: flex; overflow-x: auto; gap: 0;
+    max-width: 1100px; margin: 0 auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--violet) #f0e0ff;
+    padding-bottom: 4px;
+  }
+  .tabs::-webkit-scrollbar { height: 6px; }
+  .tabs::-webkit-scrollbar-track { background: #f0e0ff; border-radius: 50px; }
+  .tabs::-webkit-scrollbar-thumb { background: var(--violet); border-radius: 50px; }
+  .tabs::-webkit-scrollbar-thumb:hover { background: var(--rose); }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 14px 22px;
+    border: none; background: none;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700; font-size: 0.88rem;
+    cursor: pointer; color: #999;
+    border-bottom: 4px solid transparent;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 7px;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--rose); }
+  .tab-btn.active {
+    color: var(--rose);
+    border-bottom-color: var(--rose);
+  }
+  .tab-btn .tab-icon { font-size: 1.1rem; }
+
+  /* ========= CONTENT ========= */
+  .content-area {
+    max-width: 1100px; margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeUp 0.35s ease; }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(16px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  /* ========= SECTION HEADINGS ========= */
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.9rem;
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-sub {
+    font-size: 0.95rem; color: #777; margin-bottom: 28px; font-weight: 600;
+  }
+
+  /* ========= CARDS ========= */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px; margin-bottom: 32px;
+  }
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 2px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(155,93,229,0.22); }
+  .card-icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+  .card h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.25rem; margin-bottom: 8px;
+  }
+  .card p { font-size: 0.9rem; line-height: 1.6; color: #555; }
+  .card.rose   { border-color: var(--rose);   }
+  .card.violet { border-color: var(--violet); }
+  .card.sky    { border-color: var(--sky);    }
+  .card.teal   { border-color: var(--teal);   }
+  .card.amber  { border-color: var(--amber);  }
+  .card.coral  { border-color: var(--coral);  }
+  .card.lime   { border-color: var(--lime);   }
+  .card .card-accent {
+    position: absolute; top: 0; right: 0;
+    width: 60px; height: 60px;
+    border-radius: 0 var(--radius) 0 60px;
+    opacity: 0.15;
+  }
+  .card.rose   .card-accent { background: var(--rose);   }
+  .card.violet .card-accent { background: var(--violet); }
+  .card.sky    .card-accent { background: var(--sky);    }
+  .card.teal   .card-accent { background: var(--teal);   }
+  .card.amber  .card-accent { background: var(--amber);  }
+  .card.coral  .card-accent { background: var(--coral);  }
+  .card.lime   .card-accent { background: var(--lime);   }
+
+  /* ========= INFO BOX ========= */
+  .info-box {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .info-box.violet { background: #f3eeff; border-left: 5px solid var(--violet); }
+  .info-box.rose   { background: #fff0f6; border-left: 5px solid var(--rose);   }
+  .info-box.teal   { background: #e6fff6; border-left: 5px solid var(--teal);   }
+  .info-box.amber  { background: #fff8e6; border-left: 5px solid var(--amber);  }
+  .info-box.sky    { background: #e6f9ff; border-left: 5px solid var(--sky);    }
+  .info-box-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .info-box-body h4 { font-family:'Fredoka One',cursive; font-size:1.05rem; margin-bottom:4px; }
+  .info-box-body p  { font-size:0.9rem; line-height:1.6; color:#555; }
+
+  /* ========= PILL TAGS ========= */
+  .pill {
+    display: inline-block;
+    padding: 4px 14px; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 700;
+    margin: 3px;
+  }
+  .pill.rose   { background:#ffe0ee; color:#c0005f; }
+  .pill.violet { background:#ede0ff; color:#5a00b5; }
+  .pill.teal   { background:#d8fff4; color:#007a55; }
+  .pill.amber  { background:#fff4cc; color:#8a5700; }
+  .pill.sky    { background:#d8f5ff; color:#006a8a; }
+  .pill.lime   { background:#f0ffcc; color:#4a7000; }
+  .pill.coral  { background:#ffe8e8; color:#9a0000; }
+
+  /* ========= HOTSPOT DIAGRAM ========= */
+  .hotspot-container {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 28px;
+    overflow: visible;
+  }
+  .hotspot-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .diagram-area {
+    position: relative;
+    width: 100%; max-width: 680px;
+    margin: 0 auto;
+  }
+  .diagram-svg {
+    width: 100%; height: auto;
+    display: block;
+  }
+  .hotspot-dot {
+    position: absolute;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--violet);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 0.75rem; color: var(--violet);
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    transition: all 0.2s;
+    animation: pulse-dot 2s infinite;
+    box-shadow: 0 0 0 6px rgba(155,93,229,0.15);
+  }
+  .hotspot-dot:hover, .hotspot-dot.active {
+    background: var(--violet); color: white;
+    transform: translate(-50%, -50%) scale(1.2);
+    animation: none;
+  }
+  @keyframes pulse-dot {
+    0%,100%{ box-shadow: 0 0 0 4px rgba(155,93,229,0.2); }
+    50%    { box-shadow: 0 0 0 10px rgba(155,93,229,0.05); }
+  }
+  .hotspot-popup {
+    display: none;
+    position: absolute;
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    border: 2px solid var(--violet);
+    z-index: 50;
+    min-width: 200px; max-width: 260px;
+    font-size: 0.88rem; line-height: 1.5;
+    pointer-events: none;
+  }
+  .hotspot-popup.show { display: block; }
+  .hotspot-popup h5 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem; margin-bottom: 5px;
+    color: var(--violet);
+  }
+  .hotspot-popup p { color: #555; }
+
+  /* info panel below hotspot */
+  .hotspot-info-panel {
+    margin-top: 16px;
+    background: linear-gradient(135deg, #f3eeff, #ffe0f5);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    min-height: 80px;
+    transition: all 0.3s;
+    border: 2px solid #e0c8ff;
+  }
+  .hotspot-info-panel h4 {
+    font-family:'Fredoka One',cursive; font-size:1.1rem;
+    color: var(--violet); margin-bottom:6px;
+  }
+  .hotspot-info-panel p { font-size: 0.9rem; color: #555; line-height: 1.6; }
+  .hotspot-hint { color: #aaa; font-size: 0.85rem; font-style: italic; }
+
+  /* ========= TISSUE HOTSPOT COLORS ========= */
+  .hotspot-dot.dermal  { border-color: var(--rose); color: var(--rose); }
+  .hotspot-dot.dermal:hover, .hotspot-dot.dermal.active { background: var(--rose); color: white; }
+  .hotspot-dot.ground  { border-color: var(--teal); color: var(--teal); }
+  .hotspot-dot.ground:hover, .hotspot-dot.ground.active { background: var(--teal); color: white; }
+  .hotspot-dot.vascular { border-color: var(--sky); color: var(--sky); }
+  .hotspot-dot.vascular:hover, .hotspot-dot.vascular.active { background: var(--sky); color: white; }
+  .hotspot-dot.flower { border-color: var(--rose); color: var(--rose); }
+  .hotspot-dot.flower:hover, .hotspot-dot.flower.active { background: var(--rose); color: white; }
+
+  /* ========= ANIMATED WATER FLOW ========= */
+  .water-flow-section {
+    background: linear-gradient(135deg, #e6f9ff, #f0fff8);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 28px;
+    border: 2px solid #b3eaff;
+  }
+  .water-flow-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem; margin-bottom: 18px;
+    color: var(--sky);
+    display: flex; gap: 8px; align-items: center;
+  }
+  .flow-diagram {
+    display: flex; align-items: center;
+    justify-content: center; flex-wrap: wrap; gap: 8px;
+  }
+  .flow-node {
+    background: white;
+    border-radius: 12px;
+    padding: 14px 18px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--sky);
+    min-width: 120px;
+    font-size: 0.85rem; font-weight: 700;
+  }
+  .flow-node .node-icon { font-size: 1.5rem; display: block; margin-bottom: 4px; }
+  .flow-arrow {
+    font-size: 1.8rem; color: var(--sky);
+    animation: bounce-arrow 1.2s infinite;
+  }
+  @keyframes bounce-arrow {
+    0%,100%{transform:translateX(0)} 50%{transform:translateX(6px)}
+  }
+  .flow-node.xylem  { border-color: var(--sky);  }
+  .flow-node.phloem { border-color: var(--lime); border: 2px solid #7bbf00; }
+
+  /* ========= HORMONE TABLE ========= */
+  .hormone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px; margin-bottom: 28px;
+  }
+  .hormone-card {
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: transform 0.2s;
+  }
+  .hormone-card:hover { transform: scale(1.04); }
+  .hormone-card .h-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+  .hormone-card h4 { font-family:'Fredoka One',cursive; font-size:1.1rem; margin-bottom:6px; }
+  .hormone-card p { font-size:0.82rem; line-height:1.5; }
+  .hc-auxin     { background: #ffe6f5; border: 2px solid var(--rose);   }
+  .hc-gibberel  { background: #e6f5ff; border: 2px solid var(--sky);    }
+  .hc-cytokinin { background: #e8ffe6; border: 2px solid var(--teal);   }
+  .hc-ethylene  { background: #fff7e6; border: 2px solid var(--amber);  }
+  .hc-abscisic  { background: #ede6ff; border: 2px solid var(--violet); }
+
+  /* ========= TROPISM CARDS ========= */
+  .tropism-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; margin-bottom: 28px;
+  }
+  .tropism-card {
+    border-radius: var(--radius);
+    padding: 22px 18px;
+    text-align: center;
+    background: white;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+  }
+  .tropism-card:hover { transform: translateY(-4px); }
+  .tropism-card .t-emoji { font-size: 2.8rem; display: block; margin-bottom: 10px; }
+  .tropism-card h4 { font-family:'Fredoka One',cursive; font-size:1.1rem; margin-bottom:6px; }
+  .tropism-card p { font-size:0.85rem; color:#666; line-height:1.5; }
+  .tc-photo { border-top: 5px solid var(--amber); }
+  .tc-gravi { border-top: 5px solid var(--teal);  }
+  .tc-thig  { border-top: 5px solid var(--rose);  }
+  .tc-photo-period { border-top: 5px solid var(--violet); }
+  .tc-rapid { border-top: 5px solid var(--coral); }
+
+  /* ========= LIFE CYCLE ANIMATION ========= */
+  .lifecycle-section {
+    background: white;
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+  }
+  .lifecycle-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+    margin: 20px 0;
+  }
+  .lc-step {
+    display: flex; flex-direction: column; align-items: center;
+    width: 130px; padding: 12px 8px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .lc-step:nth-child(1){ animation-delay:0.1s }
+  .lc-step:nth-child(2){ animation-delay:0.2s }
+  .lc-step:nth-child(3){ animation-delay:0.3s }
+  .lc-step:nth-child(4){ animation-delay:0.4s }
+  .lc-step:nth-child(5){ animation-delay:0.5s }
+  .lc-step:nth-child(6){ animation-delay:0.6s }
+  .lc-bubble {
+    width: 64px; height: 64px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; margin-bottom: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    position: relative;
+  }
+  .lc-bubble.haploid  { background: linear-gradient(135deg,#ffe0f5,#ffd0ee); border: 3px solid var(--rose);   }
+  .lc-bubble.diploid  { background: linear-gradient(135deg,#d8f5ff,#c8eeff); border: 3px solid var(--sky);    }
+  .lc-bubble.event    { background: linear-gradient(135deg,#fff0cc,#ffe0aa); border: 3px solid var(--amber);  }
+  .lc-label { font-size: 0.78rem; font-weight: 700; text-align: center; color: #555; }
+  .lc-name  { font-family:'Fredoka One',cursive; font-size:0.9rem; color: var(--dark); margin-bottom: 2px; }
+  .lc-badge {
+    display: inline-block; padding: 2px 10px; border-radius: 50px;
+    font-size: 0.72rem; font-weight: 700; margin-top: 4px;
+  }
+  .lc-badge.haploid  { background: #ffe0f5; color: #c0005f; }
+  .lc-badge.diploid  { background: #d8f5ff; color: #006a8a; }
+  .lc-connector {
+    display: flex; align-items: center; padding-top: 20px;
+    color: #ccc; font-size: 1.4rem;
+  }
+
+  /* ========= PLANT TYPES ========= */
+  .plant-type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px; margin-bottom: 28px;
+  }
+  .plant-type-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: white;
+    transition: transform 0.2s;
+  }
+  .plant-type-card:hover { transform: translateY(-4px); }
+  .ptc-header {
+    padding: 16px;
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem; color: white;
+  }
+  .ptc-body { padding: 16px; }
+  .ptc-body p { font-size: 0.88rem; color: #555; line-height: 1.55; }
+  .ptc-example { font-weight: 700; color: #333; margin-top: 8px; font-size: 0.85rem; }
+
+  /* ========= QUIZ ========= */
+  .quiz-section {
+    background: white;
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+  .quiz-progress {
+    background: #f0e0ff;
+    border-radius: 50px;
+    height: 8px; margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .quiz-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--violet), var(--rose));
+    border-radius: 50px;
+    transition: width 0.4s;
+  }
+  .quiz-q-num {
+    font-size: 0.82rem; font-weight: 700; color: #999;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+  }
+  .quiz-question {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem; font-weight: 800;
+    color: var(--dark); margin-bottom: 22px;
+    line-height: 1.5;
+  }
+  .quiz-options {
+    display: flex; flex-direction: column; gap: 12px;
+    margin-bottom: 20px;
+  }
+  .quiz-opt {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 2px solid #e0d0f5;
+    cursor: pointer;
+    font-weight: 600; font-size: 0.92rem;
+    transition: all 0.2s;
+    background: #faf5ff;
+  }
+  .quiz-opt:hover:not(.disabled) { border-color: var(--violet); background: #f3eeff; }
+  .quiz-opt.correct { border-color: var(--teal); background: #e6fff5; color: #007a55; }
+  .quiz-opt.wrong   { border-color: var(--coral); background: #fff0f0; color: #9a0000; }
+  .quiz-opt.disabled { cursor: default; }
+  .opt-letter {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: #e0d0f5; color: var(--violet);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .quiz-opt.correct .opt-letter { background: var(--teal); color: white; }
+  .quiz-opt.wrong   .opt-letter { background: var(--coral); color: white; }
+  .quiz-feedback {
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    font-weight: 700; font-size: 0.92rem;
+    display: none;
+  }
+  .quiz-feedback.correct { background: #e6fff5; color: #007a55; border: 2px solid var(--teal); }
+  .quiz-feedback.wrong   { background: #fff0f0; color: #9a0000; border: 2px solid var(--coral); }
+  .quiz-feedback.show { display: block; animation: fadeUp 0.2s ease; }
+  .quiz-nav {
+    display: flex; gap: 12px; justify-content: flex-end;
+  }
+  .btn {
+    padding: 12px 26px;
+    border-radius: 50px;
+    border: none; cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700; font-size: 0.92rem;
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--violet), var(--rose));
+    color: white;
+    box-shadow: 0 4px 14px rgba(155,93,229,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(155,93,229,0.35); }
+  .btn-secondary {
+    background: #f0e0ff; color: var(--violet);
+  }
+  .btn-secondary:hover { background: #e0c8ff; }
+  .btn-staar {
+    background: linear-gradient(135deg, var(--amber), var(--coral));
+    color: white;
+    font-size: 1rem;
+    padding: 14px 32px;
+    box-shadow: 0 4px 18px rgba(255,107,107,0.3);
+    text-decoration: none;
+  }
+  .btn-staar:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,107,107,0.4); }
+
+  /* score */
+  .quiz-score-panel {
+    text-align: center; padding: 32px;
+    display: none;
+  }
+  .quiz-score-panel.show { display: block; animation: fadeUp 0.4s ease; }
+  .score-emoji { font-size: 4rem; margin-bottom: 12px; display: block; }
+  .score-number {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3rem; color: var(--violet);
+  }
+  .score-label { font-size: 1rem; color: #777; margin-bottom: 24px; }
+
+  /* ========= STAAR CHALLENGE BANNER ========= */
+  .staar-banner {
+    background: linear-gradient(135deg, #3A0CA3, #9B5DE5);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    box-shadow: 0 8px 30px rgba(58,12,163,0.3);
+  }
+  .staar-text h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem; color: white; margin-bottom: 4px;
+  }
+  .staar-text p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+
+  /* ========= SEED DISPERSION ========= */
+  .seed-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px; margin-bottom: 28px;
+  }
+  .seed-method {
+    background: white; border-radius: 14px;
+    padding: 18px; text-align: center;
+    box-shadow: var(--shadow);
+    font-size: 0.85rem; font-weight: 700;
+  }
+  .seed-method .sm-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+
+  /* ========= QUIZ MODE SELECTOR ========= */
+  .quiz-mode-selector {
+    display: flex; gap: 14px; margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .mode-option {
+    flex: 1; min-width: 200px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 6px; padding: 20px 18px;
+    border-radius: var(--radius);
+    border: 3px solid #e0d0f5;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    position: relative;
+  }
+  .mode-option input[type="radio"] { display: none; }
+  .mode-option:hover { border-color: var(--violet); background: #faf5ff; }
+  .mode-option.active {
+    border-color: var(--violet);
+    background: linear-gradient(135deg, #f3eeff, #ffe0f5);
+    box-shadow: 0 4px 18px rgba(155,93,229,0.2);
+  }
+  .mode-option.active-challenge {
+    border-color: var(--amber);
+    background: linear-gradient(135deg, #fff8e6, #fff0cc);
+    box-shadow: 0 4px 18px rgba(255,183,3,0.2);
+  }
+  .mode-icon { font-size: 2rem; }
+  .mode-title { font-family:'Fredoka One',cursive; font-size:1.1rem; color: var(--dark); }
+  .mode-desc  { font-size:0.82rem; color:#888; font-weight:600; }
+  .mode-option.active .mode-title { color: var(--violet); }
+  .mode-option.active-challenge .mode-title { color: #8a5700; }
+
+  /* ========= CHALLENGE PANEL ========= */
+  .challenge-launch {
+    background: linear-gradient(135deg, #fff8e6, #fff0cc);
+    border: 3px solid var(--amber);
+    border-radius: var(--radius);
+    padding: 48px 32px;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    box-shadow: 0 8px 30px rgba(255,183,3,0.2);
+  }
+  .challenge-emoji { font-size: 4rem; }
+  .challenge-launch h3 {
+    font-family:'Fredoka One',cursive; font-size:1.8rem; color:#8a5700;
+  }
+  .challenge-launch p { font-size:0.95rem; color:#666; max-width:420px; line-height:1.6; }
+
+  /* ========= RESPONSIVE ========= */
+  @media(max-width:600px){
+    .site-header h1 { font-size: 1.8rem; }
+    .tab-btn { padding: 12px 14px; font-size:0.8rem; }
+    .lc-step { width: 90px; }
+  }
+
+  /* ========= VOCAB GLOSSARY ========= */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 12px; margin-bottom: 28px;
+  }
+  .vocab-card {
+    background: white; border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--violet);
+    cursor: pointer; transition: transform 0.15s;
+  }
+  .vocab-card:hover { transform: translateX(4px); }
+  .vocab-term { font-family:'Fredoka One',cursive; font-size:1rem; color:var(--violet); }
+  .vocab-def  { font-size:0.85rem; color:#666; margin-top:4px; line-height:1.5; }
+  .vocab-card.amber-b { border-left-color: var(--amber); }
+  .vocab-card.amber-b .vocab-term { color: #8a5700; }
+  .vocab-card.rose-b  { border-left-color: var(--rose);  }
+  .vocab-card.rose-b  .vocab-term { color: #c0005f; }
+  .vocab-card.teal-b  { border-left-color: var(--teal);  }
+  .vocab-card.teal-b  .vocab-term { color: #007a55; }
+  .vocab-card.sky-b   { border-left-color: var(--sky);   }
+  .vocab-card.sky-b   .vocab-term { color: #006a8a; }
+  .vocab-card.coral-b { border-left-color: var(--coral); }
+  .vocab-card.coral-b .vocab-term { color: #9a0000; }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="module-badge">🌿 Module 4 · Biology</div>
+    <h1>🌺 Plant Systems 🌻</h1>
+    <div class="flower-row">🌸 🌼 🌺 🌻 🌹 💐 🌷 🪷 🌼 🌸</div>
+  </div>
+  <div class="teks-banner">
+    <strong>TEKS B.12(B)</strong> — Explain how the interactions that occur among systems that perform functions of <em>transport</em>, <em>reproduction</em>, and <em>response</em> in plants are facilitated by their structures.
+  </div>
+</header>
+
+<!-- ===== TABS ===== -->
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('overview',this)"><span class="tab-icon">🌿</span>Overview</button>
+    <button class="tab-btn" onclick="switchTab('transport',this)"><span class="tab-icon">💧</span>Transport</button>
+    <button class="tab-btn" onclick="switchTab('tissues',this)"><span class="tab-icon">🔬</span>Plant Tissues</button>
+    <button class="tab-btn" onclick="switchTab('reproduction',this)"><span class="tab-icon">🌸</span>Reproduction</button>
+    <button class="tab-btn" onclick="switchTab('response',this)"><span class="tab-icon">☀️</span>Response</button>
+    <button class="tab-btn" onclick="switchTab('plants',this)"><span class="tab-icon">🌲</span>Plant Types</button>
+    <button class="tab-btn" onclick="switchTab('vocab',this)"><span class="tab-icon">📖</span>Vocab</button>
+    <button class="tab-btn" onclick="switchTab('quiz',this)"><span class="tab-icon">🎯</span>STAAR Prep</button>
+  </div>
+</div>
+
+<div class="content-area">
+
+<!-- ===== OVERVIEW TAB ===== -->
+<div id="tab-overview" class="tab-panel active">
+  <div class="section-title" style="color:var(--violet)">🌿 Plant Systems Overview</div>
+  <p class="section-sub">Plants have three major systems that interact to keep them alive and thriving.</p>
+
+  <div class="card-grid">
+    <div class="card rose">
+      <div class="card-accent"></div>
+      <span class="card-icon">💧</span>
+      <h3 style="color:var(--rose)">Transport System</h3>
+      <p>Moves water, minerals, and sugars throughout the plant using <strong>xylem</strong> (water up) and <strong>phloem</strong> (sugars everywhere). The three tissue types — dermal, ground, and vascular — all play a role.</p>
+    </div>
+    <div class="card violet">
+      <div class="card-accent"></div>
+      <span class="card-icon">🌸</span>
+      <h3 style="color:var(--violet)">Reproductive System</h3>
+      <p>Flowers, fruits, and seeds allow angiosperms to be the most successful plant group. Pollination leads to fertilization, producing seeds that can be dispersed widely.</p>
+    </div>
+    <div class="card teal">
+      <div class="card-accent"></div>
+      <span class="card-icon">☀️</span>
+      <h3 style="color:var(--teal)">Response System</h3>
+      <p>Plants respond to light (phototropism), gravity (gravitropism), and touch (thigmotropism) using hormones like auxins, gibberellins, and cytokinins.</p>
+    </div>
+  </div>
+
+  <div class="info-box violet">
+    <span class="info-box-icon">🧬</span>
+    <div class="info-box-body">
+      <h4>Plant Characteristics</h4>
+      <p>All plants are <strong>eukaryotic autotrophs</strong> — they make their own food via photosynthesis. They have <strong>cell walls made of cellulose</strong>, contain <strong>chloroplasts</strong> with chlorophyll a &amp; b, and are <strong>primary producers</strong> in food webs.</p>
+    </div>
+  </div>
+
+  <div class="info-box rose">
+    <span class="info-box-icon">🪴</span>
+    <div class="info-box-body">
+      <h4>Plant Organs</h4>
+      <p>Tissues group into organs: <strong>Stems</strong> (support, vascular highway), <strong>Leaves</strong> (photosynthesis, gas exchange), <strong>Roots</strong> (anchor, absorb water/minerals), and <strong>Flowers</strong> (reproduction). The shoot system (stems, leaves, flowers) and root system work together.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== TRANSPORT TAB ===== -->
+<div id="tab-transport" class="tab-panel">
+  <div class="section-title" style="color:var(--sky)">💧 Transport System</div>
+  <p class="section-sub">How does water and food move through a plant? Let's trace the path!</p>
+
+  <!-- Xylem & Phloem cards -->
+  <div class="card-grid">
+    <div class="card sky">
+      <div class="card-accent"></div>
+      <span class="card-icon">⬆️</span>
+      <h3 style="color:#006a8a">Xylem</h3>
+      <p>Made of <strong>dead tubular cells</strong>. Transports <strong>water and dissolved minerals</strong> upward from roots to leaves via <em>capillary action</em> and <em>transpiration</em>.</p>
+      <div style="margin-top:10px">
+        <span class="pill sky">Water ⬆️</span>
+        <span class="pill sky">Minerals ⬆️</span>
+        <span class="pill sky">Dead cells</span>
+      </div>
+    </div>
+    <div class="card lime">
+      <div class="card-accent"></div>
+      <span class="card-icon">↕️</span>
+      <h3 style="color:#4a7000">Phloem</h3>
+      <p>Made of <strong>living tubular cells</strong>. Transports <strong>sugars (sucrose)</strong> from leaves (source) to all parts of the plant (sink) via the <em>Pressure Flow Hypothesis</em>.</p>
+      <div style="margin-top:10px">
+        <span class="pill lime">Sugars ↕️</span>
+        <span class="pill lime">Living cells</span>
+        <span class="pill lime">Source→Sink</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animated Flow -->
+  <div class="water-flow-section">
+    <div class="water-flow-title">💧 Water Journey Through a Plant</div>
+    <div class="flow-diagram">
+      <div class="flow-node">
+        <span class="node-icon">🌧️</span>
+        <strong>Soil Water</strong>
+        <div style="font-size:0.78rem;color:#888;margin-top:2px">absorbed by root hairs</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node xylem">
+        <span class="node-icon">⬆️</span>
+        <strong>Xylem</strong>
+        <div style="font-size:0.78rem;color:#888;margin-top:2px">capillary action</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <span class="node-icon">🍃</span>
+        <strong>Leaf Cells</strong>
+        <div style="font-size:0.78rem;color:#888;margin-top:2px">mesophyll / photosynthesis</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <span class="node-icon">💨</span>
+        <strong>Stomata</strong>
+        <div style="font-size:0.78rem;color:#888;margin-top:2px">transpiration / gas exchange</div>
+      </div>
+    </div>
+    <div style="margin-top:20px; border-top: 2px dashed #b3eaff; padding-top:16px;">
+      <div class="water-flow-title" style="color:#4a7000; font-size:1.1rem;">🌿 Pressure Flow Hypothesis (Phloem)</div>
+      <div class="flow-diagram">
+        <div class="flow-node phloem">
+          <span class="node-icon">🍃</span>
+          <strong>Source (leaf)</strong>
+          <div style="font-size:0.78rem;color:#888;margin-top:2px">sugar loaded → water follows → pressure↑</div>
+        </div>
+        <div class="flow-arrow" style="color:#7bbf00">→</div>
+        <div class="flow-node phloem">
+          <span class="node-icon">🔀</span>
+          <strong>Phloem tube</strong>
+          <div style="font-size:0.78rem;color:#888;margin-top:2px">sugar+water flow under pressure</div>
+        </div>
+        <div class="flow-arrow" style="color:#7bbf00">→</div>
+        <div class="flow-node phloem">
+          <span class="node-icon">🌱</span>
+          <strong>Sink (roots/fruit)</strong>
+          <div style="font-size:0.78rem;color:#888;margin-top:2px">sugar unloaded → water exits → pressure↓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box amber">
+    <span class="info-box-icon">🌡️</span>
+    <div class="info-box-body">
+      <h4>Transpiration &amp; Wilting</h4>
+      <p><strong>Transpiration</strong> — plants lose water vapor through stomata. This creates a "pull" that draws water up through xylem.<br>
+      <strong>Wilting</strong> — when water loss exceeds uptake, turgor pressure drops and leaves droop. Stomata close to prevent further water loss (abscisic acid triggers this).</p>
+    </div>
+  </div>
+
+  <div class="info-box teal">
+    <span class="info-box-icon">🔬</span>
+    <div class="info-box-body">
+      <h4>Stomata &amp; Homeostasis</h4>
+      <p>Stomata are pores (mostly on the leaf underside) controlled by <strong>guard cells</strong>. They open to let in CO₂ and release O₂ for photosynthesis, but every opening also loses water — a trade-off. Plants regulate stomata opening/closing to maintain homeostasis.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TISSUES TAB ===== -->
+<div id="tab-tissues" class="tab-panel">
+  <div class="section-title" style="color:var(--rose)">🔬 Plant Tissues &amp; Hotspot Diagrams</div>
+  <p class="section-sub">Click the numbered dots on each diagram to explore structures. Three tissue types run through all plant organs.</p>
+
+  <!-- THREE TISSUE TYPES CARDS -->
+  <div class="card-grid" style="margin-bottom:32px">
+    <div class="card rose">
+      <div class="card-accent"></div>
+      <span class="card-icon">🛡️</span>
+      <h3 style="color:var(--rose)">Dermal Tissue</h3>
+      <p><strong>Outer covering.</strong> Includes the <em>epidermis</em> and waxy <em>cuticle</em> that prevents water loss. Contains stomata with guard cells for gas exchange.</p>
+    </div>
+    <div class="card teal">
+      <div class="card-accent"></div>
+      <span class="card-icon">🌿</span>
+      <h3 style="color:var(--teal)">Ground Tissue</h3>
+      <p><strong>Majority of the plant.</strong> Three subtypes: <em>Parenchyma</em> (mesophyll, photosynthesis), <em>Collenchyma</em> (flexible support), <em>Sclerenchyma</em> (rigid support).</p>
+    </div>
+    <div class="card sky">
+      <div class="card-accent"></div>
+      <span class="card-icon">🚰</span>
+      <h3 style="color:#006a8a">Vascular Tissue</h3>
+      <p><strong>Transport highway.</strong> <em>Xylem</em> carries water up (dead cells), <em>Phloem</em> carries sugars throughout (living cells). Together they form the plant's "veins."</p>
+    </div>
+  </div>
+
+  <!-- HOTSPOT: VASCULAR / LEAF CROSS-SECTION TISSUES -->
+  <div class="hotspot-container">
+    <div class="hotspot-title" style="color:var(--sky)">🔬 Hotspot: Leaf &amp; Vascular Tissues</div>
+    <p style="font-size:0.88rem;color:#888;margin-bottom:16px">Click the colored dots to explore the tissue layers.</p>
+    <div class="diagram-area" id="tissue-diagram">
+      <svg class="diagram-svg" viewBox="0 0 540 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="540" height="320" fill="#f0fff8" rx="12"/>
+        
+        <!-- Cuticle -->
+        <rect x="40" y="28" width="440" height="16" fill="#FFD166" rx="4"/>
+        <text x="498" y="40" font-family="Quicksand" font-size="12" font-weight="700" fill="#8a5700">Cuticle</text>
+
+        <!-- Upper Epidermis (Dermal) -->
+        <rect x="40" y="44" width="440" height="22" fill="#FFB7E0" rx="2"/>
+        <text x="498" y="58" font-family="Quicksand" font-size="12" font-weight="700" fill="#c0005f">Epidermis (upper)</text>
+
+        <!-- Palisade Mesophyll (Ground) -->
+        <rect x="40" y="66" width="440" height="58" fill="#B7F5D0" rx="2"/>
+        <!-- palisade cells -->
+        <g stroke="#4caf50" stroke-width="1" fill="none">
+          <rect x="50" y="70" width="24" height="48" rx="3"/>
+          <rect x="80" y="70" width="24" height="48" rx="3"/>
+          <rect x="110" y="70" width="24" height="48" rx="3"/>
+          <rect x="140" y="70" width="24" height="48" rx="3"/>
+          <rect x="170" y="70" width="24" height="48" rx="3"/>
+          <rect x="200" y="70" width="24" height="48" rx="3"/>
+          <rect x="230" y="70" width="24" height="48" rx="3"/>
+          <rect x="260" y="70" width="24" height="48" rx="3"/>
+          <rect x="290" y="70" width="24" height="48" rx="3"/>
+          <rect x="320" y="70" width="24" height="48" rx="3"/>
+          <rect x="350" y="70" width="24" height="48" rx="3"/>
+          <rect x="380" y="70" width="24" height="48" rx="3"/>
+          <rect x="410" y="70" width="24" height="48" rx="3"/>
+          <rect x="440" y="70" width="24" height="48" rx="3"/>
+        </g>
+        <text x="498" y="98" font-family="Quicksand" font-size="12" font-weight="700" fill="#007a55">Palisade Mesophyll</text>
+        <text x="498" y="111" font-family="Quicksand" font-size="10" fill="#007a55">(Ground tissue)</text>
+
+        <!-- VEIN: Xylem + Phloem -->
+        <rect x="160" y="124" width="200" height="48" fill="#E8F4FF" rx="6" stroke="#00C2FF" stroke-width="2"/>
+        <!-- Xylem half -->
+        <rect x="162" y="126" width="98" height="44" fill="#C8EEFF" rx="5"/>
+        <text x="195" y="152" font-family="Quicksand" font-size="13" font-weight="800" fill="#006a8a">Xylem</text>
+        <!-- Phloem half -->
+        <rect x="262" y="126" width="96" height="44" fill="#d8ffec" rx="5"/>
+        <text x="289" y="152" font-family="Quicksand" font-size="13" font-weight="800" fill="#007a55">Phloem</text>
+        <!-- Vein label -->
+        <text x="175" y="186" font-family="Quicksand" font-size="11" font-weight="700" fill="#006a8a">← Vein (Vascular bundle) →</text>
+
+        <!-- Spongy Mesophyll (Ground) -->
+        <rect x="40" y="172" width="440" height="58" fill="#B7F5D0" rx="2" opacity="0.7"/>
+        <!-- spongy cells (irregular) -->
+        <g fill="#6ee7b7" stroke="#4caf50" stroke-width="1">
+          <ellipse cx="70" cy="200" rx="18" ry="14"/>
+          <ellipse cx="120" cy="195" rx="16" ry="12"/>
+          <ellipse cx="155" cy="205" rx="20" ry="13"/>
+          <ellipse cx="330" cy="200" rx="18" ry="14"/>
+          <ellipse cx="380" cy="195" rx="16" ry="13"/>
+          <ellipse cx="420" cy="205" rx="18" ry="12"/>
+          <ellipse cx="460" cy="198" rx="16" ry="14"/>
+        </g>
+        <text x="498" y="204" font-family="Quicksand" font-size="12" font-weight="700" fill="#007a55">Spongy Mesophyll</text>
+        <text x="498" y="217" font-family="Quicksand" font-size="10" fill="#007a55">(Ground tissue)</text>
+
+        <!-- Lower Epidermis with Stomata (Dermal) -->
+        <rect x="40" y="230" width="440" height="22" fill="#FFB7E0" rx="2"/>
+        <!-- Stomata opening -->
+        <ellipse cx="200" cy="241" rx="18" ry="7" fill="#fff" stroke="#FF4D8D" stroke-width="2"/>
+        <ellipse cx="340" cy="241" rx="18" ry="7" fill="#fff" stroke="#FF4D8D" stroke-width="2"/>
+        <!-- Guard cells -->
+        <ellipse cx="185" cy="241" rx="8" ry="10" fill="#FF4D8D" opacity="0.5"/>
+        <ellipse cx="215" cy="241" rx="8" ry="10" fill="#FF4D8D" opacity="0.5"/>
+        <ellipse cx="325" cy="241" rx="8" ry="10" fill="#FF4D8D" opacity="0.5"/>
+        <ellipse cx="355" cy="241" rx="8" ry="10" fill="#FF4D8D" opacity="0.5"/>
+        <text x="498" y="243" font-family="Quicksand" font-size="12" font-weight="700" fill="#c0005f">Lower Epidermis</text>
+        <text x="498" y="256" font-family="Quicksand" font-size="10" fill="#c0005f">+ Stomata + Guard cells</text>
+
+        <!-- Cuticle bottom -->
+        <rect x="40" y="252" width="440" height="12" fill="#FFD166" rx="4" opacity="0.8"/>
+        <text x="498" y="261" font-family="Quicksand" font-size="11" font-weight="700" fill="#8a5700">Cuticle (lower)</text>
+
+        <!-- Arrow CO2 in -->
+        <text x="55" y="295" font-family="Quicksand" font-size="11" font-weight="700" fill="#00a0cc">CO₂ ↑ in</text>
+        <line x1="85" y1="272" x2="85" y2="252" stroke="#00a0cc" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+        <text x="100" y="295" font-family="Quicksand" font-size="11" font-weight="700" fill="#FF6B6B">H₂O ↓ out</text>
+        <line x1="140" y1="272" x2="140" y2="252" stroke="#FF6B6B" stroke-width="2"/>
+
+        <defs>
+          <marker id="arrowBlue" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L6,3 z" fill="#00a0cc"/>
+          </marker>
+        </defs>
+      </svg>
+
+      <!-- Hotspot dots for tissues -->
+      <div class="hotspot-dot dermal" style="left:15%;top:14%" onclick="showHotspot('tissue','cuticle',this)" title="Cuticle">1</div>
+      <div class="hotspot-dot dermal" style="left:15%;top:22%" onclick="showHotspot('tissue','epidermis-upper',this)" title="Upper Epidermis">2</div>
+      <div class="hotspot-dot ground" style="left:15%;top:33%" onclick="showHotspot('tissue','palisade',this)" title="Palisade Mesophyll">3</div>
+      <div class="hotspot-dot vascular" style="left:38%;top:48%" onclick="showHotspot('tissue','xylem',this)" title="Xylem">4</div>
+      <div class="hotspot-dot vascular" style="left:60%;top:48%" onclick="showHotspot('tissue','phloem',this)" title="Phloem">5</div>
+      <div class="hotspot-dot ground" style="left:15%;top:63%" onclick="showHotspot('tissue','spongy',this)" title="Spongy Mesophyll">6</div>
+      <div class="hotspot-dot dermal" style="left:37%;top:78%" onclick="showHotspot('tissue','stomata',this)" title="Stomata & Guard Cells">7</div>
+    </div>
+    <div class="hotspot-info-panel" id="tissue-info">
+      <p class="hotspot-hint">👆 Click a numbered dot to learn about that tissue or structure.</p>
+    </div>
+  </div>
+
+  <!-- Meristems -->
+  <div class="info-box violet">
+    <span class="info-box-icon">🌱</span>
+    <div class="info-box-body">
+      <h4>Meristematic Tissues — Where Growth Happens</h4>
+      <p>
+        <strong>Apical Meristem</strong> — tips of stems &amp; roots → increase <em>length</em> at tips<br>
+        <strong>Intercalary Meristem</strong> — between tip and base → increase <em>length between nodes</em><br>
+        <strong>Lateral Meristem</strong> — sides of stems &amp; roots → increase <em>diameter</em>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== REPRODUCTION TAB ===== -->
+<div id="tab-reproduction" class="tab-panel">
+  <div class="section-title" style="color:var(--rose)">🌸 Reproduction in Plants</div>
+  <p class="section-sub">Angiosperms are the world's most successful plants — thanks to flowers, fruits, and seeds!</p>
+
+  <!-- Life Cycle Animation -->
+  <div class="lifecycle-section">
+    <div class="hotspot-title" style="color:var(--violet)">🔄 Alternation of Generations</div>
+    <p style="font-size:0.88rem;color:#888;margin-bottom:20px">Plants alternate between a haploid (n) gametophyte stage and a diploid (2n) sporophyte stage.</p>
+    <div class="lifecycle-steps">
+      <div class="lc-step">
+        <div class="lc-bubble haploid">🌿</div>
+        <div class="lc-name">Gametophyte</div>
+        <div class="lc-badge haploid">Haploid (n)</div>
+        <div class="lc-label">Produces gametes by mitosis</div>
+      </div>
+      <div class="lc-connector">→</div>
+      <div class="lc-step">
+        <div class="lc-bubble event">💥</div>
+        <div class="lc-name">Fertilization</div>
+        <div class="lc-badge" style="background:#fff4cc;color:#8a5700">Event</div>
+        <div class="lc-label">Sperm + Egg fuse</div>
+      </div>
+      <div class="lc-connector">→</div>
+      <div class="lc-step">
+        <div class="lc-bubble diploid">🥚</div>
+        <div class="lc-name">Zygote (2n)</div>
+        <div class="lc-badge diploid">Diploid (2n)</div>
+        <div class="lc-label">Mitosis → Sporophyte</div>
+      </div>
+      <div class="lc-connector">→</div>
+      <div class="lc-step">
+        <div class="lc-bubble diploid">🌳</div>
+        <div class="lc-name">Sporophyte</div>
+        <div class="lc-badge diploid">Diploid (2n)</div>
+        <div class="lc-label">Makes spores by meiosis</div>
+      </div>
+      <div class="lc-connector">→</div>
+      <div class="lc-step">
+        <div class="lc-bubble haploid">🌱</div>
+        <div class="lc-name">Spores (n)</div>
+        <div class="lc-badge haploid">Haploid (n)</div>
+        <div class="lc-label">Germinate → new Gametophyte</div>
+      </div>
+    </div>
+    <div class="info-box amber" style="margin-top:16px;margin-bottom:0">
+      <span class="info-box-icon">💡</span>
+      <div class="info-box-body">
+        <h4>Key Rule</h4>
+        <p><strong>Meiosis</strong> produces spores (sporophyte → spores). <strong>Mitosis</strong> handles everything else — gamete production and sporophyte growth.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOTSPOT: FLOWER STRUCTURES -->
+  <div class="hotspot-container">
+    <div class="hotspot-title" style="color:var(--rose)">🌺 Hotspot: Flower Structure</div>
+    <p style="font-size:0.88rem;color:#888;margin-bottom:16px">Click the pink dots to explore each flower part.</p>
+    <div class="diagram-area" id="flower-diagram">
+      <!-- SVG Flower Diagram -->
+      <svg class="diagram-svg" viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background -->
+        <rect width="500" height="420" fill="#fff9fe" rx="12"/>
+        <!-- Stem -->
+        <rect x="240" y="330" width="22" height="80" fill="#6bb536" rx="4"/>
+        <!-- Sepals -->
+        <ellipse cx="251" cy="335" rx="38" ry="14" fill="#4caf50" transform="rotate(-15,251,335)"/>
+        <ellipse cx="251" cy="335" rx="38" ry="14" fill="#4caf50" transform="rotate(15,251,335)"/>
+        <ellipse cx="251" cy="335" rx="38" ry="14" fill="#4caf50" transform="rotate(45,251,335)"/>
+        <ellipse cx="251" cy="335" rx="38" ry="14" fill="#4caf50" transform="rotate(-45,251,335)"/>
+        <!-- Petals -->
+        <ellipse cx="251" cy="220" rx="55" ry="95" fill="#FFB7E0" opacity="0.9"/>
+        <ellipse cx="251" cy="220" rx="55" ry="95" fill="#FFB7E0" opacity="0.9" transform="rotate(45,251,270)"/>
+        <ellipse cx="251" cy="220" rx="55" ry="95" fill="#FFB7E0" opacity="0.9" transform="rotate(90,251,270)"/>
+        <ellipse cx="251" cy="220" rx="55" ry="95" fill="#FFB7E0" opacity="0.9" transform="rotate(135,251,270)"/>
+        <ellipse cx="251" cy="220" rx="55" ry="95" fill="#FFB7E0" opacity="0.9" transform="rotate(-45,251,270)"/>
+        <!-- Pistil (center female) -->
+        <rect x="241" y="215" width="20" height="70" fill="#F4A261" rx="3"/>
+        <!-- Stigma -->
+        <ellipse cx="251" cy="210" rx="16" ry="8" fill="#E76F51"/>
+        <!-- Ovary -->
+        <ellipse cx="251" cy="290" rx="22" ry="16" fill="#E9C46A"/>
+        <!-- Ovule inside -->
+        <ellipse cx="251" cy="290" rx="10" ry="7" fill="#F4A261" opacity="0.7"/>
+        <!-- Stamens -->
+        <line x1="210" y1="285" x2="225" y2="240" stroke="#8B5CF6" stroke-width="2.5"/>
+        <line x1="290" y1="285" x2="275" y2="240" stroke="#8B5CF6" stroke-width="2.5"/>
+        <line x1="215" y1="260" x2="228" y2="225" stroke="#8B5CF6" stroke-width="2.5"/>
+        <line x1="285" y1="260" x2="272" y2="225" stroke="#8B5CF6" stroke-width="2.5"/>
+        <!-- Anthers -->
+        <ellipse cx="224" cy="237" rx="9" ry="5" fill="#9B5DE5"/>
+        <ellipse cx="276" cy="237" rx="9" ry="5" fill="#9B5DE5"/>
+        <ellipse cx="227" cy="222" rx="9" ry="5" fill="#9B5DE5"/>
+        <ellipse cx="273" cy="222" rx="9" ry="5" fill="#9B5DE5"/>
+        <!-- Labels -->
+        <text x="340" y="195" font-family="Quicksand,sans-serif" font-size="13" font-weight="700" fill="#E76F51">Stigma</text>
+        <line x1="267" y1="210" x2="336" y2="193" stroke="#E76F51" stroke-width="1.5" stroke-dasharray="4"/>
+        <text x="340" y="252" font-family="Quicksand,sans-serif" font-size="13" font-weight="700" fill="#F4A261">Style</text>
+        <line x1="261" y1="250" x2="336" y2="250" stroke="#F4A261" stroke-width="1.5" stroke-dasharray="4"/>
+        <text x="340" y="293" font-family="Quicksand,sans-serif" font-size="13" font-weight="700" fill="#E9C46A">Ovary</text>
+        <line x1="273" y1="290" x2="336" y2="291" stroke="#E9C46A" stroke-width="1.5" stroke-dasharray="4"/>
+        <text x="340" y="310" font-family="Quicksand,sans-serif" font-size="11" font-weight="600" fill="#999">(+ Ovule inside)</text>
+        <text x="80" y="225" font-family="Quicksand,sans-serif" font-size="13" font-weight="700" fill="#9B5DE5">Anther</text>
+        <line x1="130" y1="225" x2="220" y2="232" stroke="#9B5DE5" stroke-width="1.5" stroke-dasharray="4"/>
+        <text x="60" y="265" font-family="Quicksand,sans-serif" font-size="13" font-weight="700" fill="#9B5DE5">Filament</text>
+        <line x1="120" y1="265" x2="213" y2="265" stroke="#9B5DE5" stroke-width="1.5" stroke-dasharray="4"/>
+        <text x="60" y="350" font-family="Quicksand,sans-serif" font-size="13" font-weight="700" fill="#4caf50">Sepal</text>
+        <line x1="100" y1="345" x2="215" y2="340" stroke="#4caf50" stroke-width="1.5" stroke-dasharray="4"/>
+        <text x="80" y="195" font-family="Quicksand,sans-serif" font-size="13" font-weight="700" fill="#FFB7E0">Petal</text>
+        <line x1="120" y1="193" x2="200" y2="195" stroke="#FFB7E0" stroke-width="1.5" stroke-dasharray="4"/>
+        <!-- Bracket labels -->
+        <text x="390" y="260" font-family="Quicksand,sans-serif" font-size="12" font-weight="800" fill="#E76F51">Pistil</text>
+        <text x="390" y="273" font-family="Quicksand,sans-serif" font-size="10" fill="#E76F51">(Carpel/♀)</text>
+        <rect x="385" y="200" width="3" height="100" fill="#E76F51" rx="2"/>
+        <text x="30" y="248" font-family="Quicksand,sans-serif" font-size="12" font-weight="800" fill="#9B5DE5">Stamen</text>
+        <text x="35" y="260" font-family="Quicksand,sans-serif" font-size="10" fill="#9B5DE5">(♂)</text>
+        <rect x="53" y="218" width="3" height="55" fill="#9B5DE5" rx="2"/>
+      </svg>
+      <!-- Hotspot Dots for Flower -->
+      <div class="hotspot-dot flower" style="left:63%;top:52%" onclick="showHotspot('flower','stigma',this)" title="Stigma">1</div>
+      <div class="hotspot-dot flower" style="left:63%;top:62%" onclick="showHotspot('flower','style',this)" title="Style">2</div>
+      <div class="hotspot-dot flower" style="left:63%;top:72%" onclick="showHotspot('flower','ovary',this)" title="Ovary">3</div>
+      <div class="hotspot-dot flower" style="left:28%;top:57%" onclick="showHotspot('flower','anther',this)" title="Anther">4</div>
+      <div class="hotspot-dot flower" style="left:28%;top:67%" onclick="showHotspot('flower','filament',this)" title="Filament">5</div>
+      <div class="hotspot-dot flower" style="left:43%;top:87%" onclick="showHotspot('flower','sepal',this)" title="Sepal">6</div>
+      <div class="hotspot-dot flower" style="left:25%;top:48%" onclick="showHotspot('flower','petal',this)" title="Petal">7</div>
+    </div>
+    <div class="hotspot-info-panel" id="flower-info">
+      <p class="hotspot-hint">👆 Click a numbered dot to learn about that flower part.</p>
+    </div>
+  </div>
+
+  <!-- Angiosperm Reproduction cards -->
+  <div class="card-grid">
+    <div class="card rose">
+      <div class="card-accent"></div>
+      <span class="card-icon">🌸</span>
+      <h3 style="color:var(--rose)">Pollination</h3>
+      <p>Transfer of pollen from anther to stigma. Occurs via <strong>wind</strong>, <strong>animals</strong>, or <strong>insects</strong>. Pollen grain grows a pollen tube down the style to the ovule.</p>
+    </div>
+    <div class="card violet">
+      <div class="card-accent"></div>
+      <span class="card-icon">⚡</span>
+      <h3 style="color:var(--violet)">Double Fertilization</h3>
+      <p>Angiosperms have TWO fertilization events: one produces the <strong>zygote</strong>; the other produces the <strong>endosperm</strong> (triploid 3n) which nourishes the seed.</p>
+    </div>
+    <div class="card amber">
+      <div class="card-accent"></div>
+      <span class="card-icon">🍎</span>
+      <h3 style="color:#8a5700">Fruit &amp; Seed</h3>
+      <p>A fruit is a <strong>matured angiosperm ovary</strong> containing seeds. After fertilization, nutrients from the vascular system flow to support the growing embryo.</p>
+    </div>
+    <div class="card teal">
+      <div class="card-accent"></div>
+      <span class="card-icon">🪴</span>
+      <h3 style="color:var(--teal)">Vegetative Reproduction</h3>
+      <p>Asexual reproduction — new plants form by <strong>mitosis</strong>. No gametes, flowers, or fertilization needed. Methods: <em>cuttings</em> and <em>grafting</em>.</p>
+    </div>
+  </div>
+
+  <!-- Seed Dispersion -->
+  <div class="hotspot-title" style="color:var(--teal);margin-top:8px;margin-bottom:12px">🌱 Seed Dispersal Methods</div>
+  <div class="seed-methods">
+    <div class="seed-method" style="border-top:4px solid var(--sky)">
+      <span class="sm-icon">💨</span><strong>Wind</strong>
+      <p style="font-size:0.8rem;color:#888;margin-top:4px">Dandelion, maple samaras</p>
+    </div>
+    <div class="seed-method" style="border-top:4px solid var(--rose)">
+      <span class="sm-icon">🐦</span><strong>Animals</strong>
+      <p style="font-size:0.8rem;color:#888;margin-top:4px">Eaten &amp; passed, or hooked on fur</p>
+    </div>
+    <div class="seed-method" style="border-top:4px solid var(--amber)">
+      <span class="sm-icon">💧</span><strong>Water</strong>
+      <p style="font-size:0.8rem;color:#888;margin-top:4px">Coconut, cattail</p>
+    </div>
+    <div class="seed-method" style="border-top:4px solid var(--coral)">
+      <span class="sm-icon">💥</span><strong>Explosion</strong>
+      <p style="font-size:0.8rem;color:#888;margin-top:4px">Jewelweed, lupins</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESPONSE TAB ===== -->
+<div id="tab-response" class="tab-panel">
+  <div class="section-title" style="color:var(--amber)">☀️ Response System</div>
+  <p class="section-sub">Plants respond to their environment using hormones and tropisms — no nervous system required!</p>
+
+  <!-- Hormones -->
+  <div class="hotspot-title" style="color:var(--violet);margin-bottom:16px">🧪 Plant Hormones (Phytohormones)</div>
+  <div class="hormone-grid">
+    <div class="hormone-card hc-auxin">
+      <span class="h-icon">🌿</span>
+      <h4>Auxins</h4>
+      <p>Promote <strong>cell elongation</strong>. Collect on shady side → plant curves toward light = <em>phototropism</em>. Produced in canopy → root growth.</p>
+    </div>
+    <div class="hormone-card hc-gibberel">
+      <span class="h-icon">📏</span>
+      <h4>Gibberellins</h4>
+      <p>Promote <strong>stem elongation</strong>, germination of seeds, root growth, and flowering.</p>
+    </div>
+    <div class="hormone-card hc-cytokinin">
+      <span class="h-icon">🔀</span>
+      <h4>Cytokinins</h4>
+      <p>Mainly promote <strong>cell division</strong>. Work with auxins to regulate growth.</p>
+    </div>
+    <div class="hormone-card hc-ethylene">
+      <span class="h-icon">🍅</span>
+      <h4>Ethylene</h4>
+      <p>Stimulates <strong>fruit ripening</strong>. A gas — fruit produces it and it spreads to neighbors.</p>
+    </div>
+    <div class="hormone-card hc-abscisic">
+      <span class="h-icon">😴</span>
+      <h4>Abscisic Acid</h4>
+      <p><em>"Stress Hormone"</em> — inhibits cell division, promotes <strong>seed/bud dormancy</strong>, closes stomata during drought.</p>
+    </div>
+  </div>
+
+  <!-- Tropisms -->
+  <div class="hotspot-title" style="color:var(--coral);margin-bottom:16px">🌀 Tropisms — Responses to External Stimuli</div>
+  <div class="tropism-row">
+    <div class="tropism-card tc-photo">
+      <span class="t-emoji">☀️</span>
+      <h4>Phototropism</h4>
+      <p>Growth <strong>toward light</strong>. Driven by auxin concentrating on the shaded side, causing cells there to elongate more.</p>
+    </div>
+    <div class="tropism-card tc-gravi">
+      <span class="t-emoji">⬇️</span>
+      <h4>Gravitropism</h4>
+      <p>Roots grow <strong>downward</strong> (positive) with gravity; shoots grow <strong>upward</strong> (negative) against gravity.</p>
+    </div>
+    <div class="tropism-card tc-thig">
+      <span class="t-emoji">🤝</span>
+      <h4>Thigmotropism</h4>
+      <p>Response to <strong>touch or contact</strong> with a solid. Vines wrap around supports; ivy climbs walls.</p>
+    </div>
+    <div class="tropism-card tc-photo-period">
+      <span class="t-emoji">🌙</span>
+      <h4>Photoperiodism</h4>
+      <p>Response to the <strong>length of day vs. night</strong>. Controls flowering in short-day and long-day plants.</p>
+    </div>
+    <div class="tropism-card tc-rapid">
+      <span class="t-emoji">⚡</span>
+      <h4>Rapid Movements</h4>
+      <p>Mimosa pudica folds leaves on touch; Venus flytrap snaps shut — triggered by electrical signals &amp; water pressure changes.</p>
+    </div>
+  </div>
+
+  <div class="info-box sky">
+    <span class="info-box-icon">🔗</span>
+    <div class="info-box-body">
+      <h4>Systems Connection: How Response Interacts with Transport &amp; Reproduction</h4>
+      <p>Hormones (auxins, ABA) are produced in one tissue and travel through <strong>phloem</strong> to affect others — linking the response system to the transport system. Photoperiodism triggers flowering — linking the response system to the reproductive system.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PLANT TYPES TAB ===== -->
+<div id="tab-plants" class="tab-panel">
+  <div class="section-title" style="color:var(--teal)">🌲 Four Major Types of Plants</div>
+  <p class="section-sub">Plants are classified by whether they have vascular tissue and how they reproduce.</p>
+
+  <div class="plant-type-grid">
+    <div class="plant-type-card">
+      <div class="ptc-header" style="background:linear-gradient(135deg,#06D6A0,#00a87e)">🌿 Non-Vascular Seedless</div>
+      <div class="ptc-body">
+        <p>No vascular system. Very short. Always in <strong>humid environments</strong> — water moves by diffusion &amp; osmosis only.</p>
+        <div class="ptc-example">🌿 Mosses, Liverworts, Hornworts (Bryophytes)</div>
+        <div style="margin-top:8px">
+          <span class="pill teal">No xylem/phloem</span>
+          <span class="pill teal">No seeds</span>
+          <span class="pill teal">Humid only</span>
+        </div>
+      </div>
+    </div>
+    <div class="plant-type-card">
+      <div class="ptc-header" style="background:linear-gradient(135deg,#B5EF23,#7bbf00);color:#1a3300">🌾 Vascular Seedless</div>
+      <div class="ptc-body">
+        <p>Have vascular tissue (xylem &amp; phloem) but no seeds. Larger than mosses. Still need humid environments for reproduction.</p>
+        <div class="ptc-example">🌿 Ferns, Club Moss (Pteridophytes)</div>
+        <div style="margin-top:8px">
+          <span class="pill lime">Xylem + Phloem</span>
+          <span class="pill lime">No seeds</span>
+          <span class="pill lime">Spores</span>
+        </div>
+      </div>
+    </div>
+    <div class="plant-type-card">
+      <div class="ptc-header" style="background:linear-gradient(135deg,#00C2FF,#0099cc)">🌲 Gymnosperms</div>
+      <div class="ptc-body">
+        <p>Vascular with seeds in <strong>cones</strong> (naked seeds). Among the largest trees on Earth. Prefer cold, dry environments.</p>
+        <div class="ptc-example">🌲 Pines, Ginkgo, Cycads</div>
+        <div style="margin-top:8px">
+          <span class="pill sky">Naked seeds</span>
+          <span class="pill sky">Cones</span>
+          <span class="pill sky">Cold/dry</span>
+        </div>
+      </div>
+    </div>
+    <div class="plant-type-card">
+      <div class="ptc-header" style="background:linear-gradient(135deg,#FF4D8D,#c0005f)">🌺 Angiosperms</div>
+      <div class="ptc-body">
+        <p>The <strong>most successful</strong> group! Seeds enclosed in fruit. Flowers attract pollinators. Can live in almost any environment.</p>
+        <div class="ptc-example">🌸 All flowering plants — roses, oaks, grasses, crops</div>
+        <div style="margin-top:8px">
+          <span class="pill rose">Flowers</span>
+          <span class="pill rose">Seeds in fruit</span>
+          <span class="pill rose">Most diverse</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box violet">
+    <span class="info-box-icon">🏆</span>
+    <div class="info-box-body">
+      <h4>Why are Angiosperms so successful?</h4>
+      <p>Three key innovations: <strong>(1) Flowers</strong> attract specific pollinators for efficient pollen transfer. <strong>(2) Fruit</strong> aids seed dispersal by animals. <strong>(3) Seeds</strong> contain endosperm to nourish embryos. Together these give angiosperms huge reproductive advantages.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== VOCAB TAB ===== -->
+<div id="tab-vocab" class="tab-panel">
+  <div class="section-title" style="color:var(--violet)">📖 Key Vocabulary</div>
+  <p class="section-sub">Master these terms for the STAAR exam.</p>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="vocab-term">Xylem</div><div class="vocab-def">Dead tubular cells that transport water and dissolved minerals <strong>upward</strong> from roots to leaves via capillary action and transpiration.</div></div>
+    <div class="vocab-card rose-b"><div class="vocab-term">Phloem</div><div class="vocab-def">Living tubular cells that transport sugars (sucrose) from leaves to all parts of the plant (source → sink).</div></div>
+    <div class="vocab-card teal-b"><div class="vocab-term">Transpiration</div><div class="vocab-def">Process by which plants lose water vapor through stomata in their leaves.</div></div>
+    <div class="vocab-card amber-b"><div class="vocab-term">Stomata</div><div class="vocab-def">Tiny pores in the cuticle (mostly on leaf undersides) that allow gas exchange (CO₂ in, O₂ out). Controlled by guard cells.</div></div>
+    <div class="vocab-card sky-b"><div class="vocab-term">Photosynthesis</div><div class="vocab-def">Process in chloroplasts that converts CO₂ + H₂O + light energy into glucose (sugar) and O₂.</div></div>
+    <div class="vocab-card"><div class="vocab-term">Auxins</div><div class="vocab-def">Plant hormones that promote cell elongation; responsible for phototropism by concentrating on the shaded side.</div></div>
+    <div class="vocab-card rose-b"><div class="vocab-term">Gibberellins</div><div class="vocab-def">Plant hormones that mainly promote stem elongation, germination, root growth, and flowering.</div></div>
+    <div class="vocab-card teal-b"><div class="vocab-term">Cytokinins</div><div class="vocab-def">Plant hormones that mainly promote cell division.</div></div>
+    <div class="vocab-card amber-b"><div class="vocab-term">Ethylene</div><div class="vocab-def">A gaseous plant hormone that stimulates fruit ripening.</div></div>
+    <div class="vocab-card coral-b"><div class="vocab-term">Abscisic Acid</div><div class="vocab-def">The "stress hormone" — inhibits growth, promotes seed dormancy, closes stomata during drought.</div></div>
+    <div class="vocab-card sky-b"><div class="vocab-term">Phototropism</div><div class="vocab-def">Growth toward light. Auxin concentrates on the shaded side, causing those cells to elongate more.</div></div>
+    <div class="vocab-card"><div class="vocab-term">Gravitropism</div><div class="vocab-def">Roots grow downward (positive gravitropism), shoots grow upward (negative gravitropism) in response to gravity.</div></div>
+    <div class="vocab-card rose-b"><div class="vocab-term">Thigmotropism</div><div class="vocab-def">A plant's response to touch or physical contact with a solid object (e.g., vines wrapping around a support).</div></div>
+    <div class="vocab-card teal-b"><div class="vocab-term">Pollination</div><div class="vocab-def">Transfer of pollen from anther to stigma, occurring via wind, animals, or insects.</div></div>
+    <div class="vocab-card amber-b"><div class="vocab-term">Angiosperms</div><div class="vocab-def">Flowering plants — the most successful group, with seeds enclosed in fruit. Reproductive success due to flowers, fruit, and seeds.</div></div>
+    <div class="vocab-card coral-b"><div class="vocab-term">Alternation of Generations</div><div class="vocab-def">The shift between haploid gametophyte stage (produces gametes by mitosis) and diploid sporophyte stage (produces spores by meiosis).</div></div>
+    <div class="vocab-card sky-b"><div class="vocab-term">Meristems</div><div class="vocab-def">Areas of actively dividing, unspecialized cells responsible for plant growth. Types: Apical, Intercalary, Lateral.</div></div>
+    <div class="vocab-card"><div class="vocab-term">Pressure Flow Hypothesis</div><div class="vocab-def">Theory explaining phloem transport: sugar loaded at source → water follows by osmosis → pressure drives flow to sink.</div></div>
+  </div>
+</div>
+
+<!-- ===== QUIZ TAB ===== -->
+<div id="tab-quiz" class="tab-panel">
+  <div class="section-title" style="color:var(--violet)">🎯 STAAR Prep</div>
+  <p class="section-sub">Choose your activity below — practice first, then take the real challenge!</p>
+
+  <!-- Radio Toggle Selector -->
+  <div class="quiz-mode-selector">
+    <label class="mode-option active" id="mode-label-practice" onclick="setMode('practice')">
+      <input type="radio" name="quizMode" value="practice" checked>
+      <span class="mode-icon">📝</span>
+      <span class="mode-title">STAAR Practice Quiz</span>
+      <span class="mode-desc">10 questions · instant feedback · B.12(B)</span>
+    </label>
+    <label class="mode-option" id="mode-label-challenge" onclick="setMode('challenge')">
+      <input type="radio" name="quizMode" value="challenge">
+      <span class="mode-icon">⭐</span>
+      <span class="mode-title">STAAR Challenge</span>
+      <span class="mode-desc">Full quiz on Wayground · opens in new tab</span>
+    </label>
+  </div>
+
+  <!-- Practice Quiz Panel -->
+  <div id="practice-panel">
+    <div class="quiz-section">
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar" id="quiz-progress-bar" style="width:10%"></div>
+      </div>
+
+      <div id="quiz-body">
+        <div class="quiz-q-num" id="quiz-q-num">Question 1 of 10</div>
+        <div class="quiz-question" id="quiz-question"></div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="quiz-next-btn" onclick="nextQuestion()" style="display:none">Next →</button>
+        </div>
+      </div>
+
+      <div class="quiz-score-panel" id="quiz-score">
+        <span class="score-emoji" id="score-emoji">🌸</span>
+        <div class="score-number" id="score-number"></div>
+        <div class="score-label" id="score-label"></div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px">
+          <button class="btn btn-secondary" onclick="restartQuiz()">🔄 Try Again</button>
+          <button class="btn btn-primary" onclick="setMode('challenge')">⭐ Ready for the Real Thing?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAAR Challenge Panel -->
+  <div id="challenge-panel" style="display:none">
+    <div class="challenge-launch">
+      <span class="challenge-emoji">🌟</span>
+      <h3>You're heading to the STAAR Challenge!</h3>
+      <p>Make sure you've completed the module and the practice quiz before starting. This is the real deal — good luck! 🌺</p>
+      <a href="https://wayground.com/join?gc=46990238" target="_blank" class="btn btn-staar" style="font-size:1.1rem;padding:16px 40px;margin-top:8px">⭐ Launch STAAR Challenge</a>
+      <button class="btn btn-secondary" onclick="setMode('practice')" style="margin-top:12px">← Back to Practice Quiz</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- end content-area -->
+
+<script>
+// ========== TAB SWITCHING ==========
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ========== QUIZ MODE TOGGLE ==========
+function setMode(mode) {
+  const practicePanel   = document.getElementById('practice-panel');
+  const challengePanel  = document.getElementById('challenge-panel');
+  const labelPractice   = document.getElementById('mode-label-practice');
+  const labelChallenge  = document.getElementById('mode-label-challenge');
+
+  if (mode === 'practice') {
+    practicePanel.style.display  = 'block';
+    challengePanel.style.display = 'none';
+    labelPractice.classList.add('active');
+    labelPractice.classList.remove('active-challenge');
+    labelChallenge.classList.remove('active', 'active-challenge');
+    document.querySelector('input[value="practice"]').checked = true;
+  } else {
+    practicePanel.style.display  = 'none';
+    challengePanel.style.display = 'block';
+    labelChallenge.classList.add('active-challenge');
+    labelChallenge.classList.remove('active');
+    labelPractice.classList.remove('active', 'active-challenge');
+    document.querySelector('input[value="challenge"]').checked = true;
+  }
+}
+
+// ========== HOTSPOT DATA ==========
+const hotspotData = {
+  flower: {
+    stigma:   { name:'Stigma', info:'The sticky top of the pistil (carpel) that <strong>receives pollen</strong> during fertilization. Pollen grains germinate here and grow a pollen tube down the style.', color:'var(--rose)' },
+    style:    { name:'Style', info:'The slender stalk of the carpel that connects the stigma to the ovary. The <strong>pollen tube grows through the style</strong> to reach the ovule.', color:'var(--amber)' },
+    ovary:    { name:'Ovary', info:'The enlarged base of the pistil that contains the <strong>ovules</strong>. After fertilization, the ovary matures into a <strong>fruit</strong> and ovules become seeds.', color:'#E9C46A' },
+    anther:   { name:'Anther', info:'The male structure at the top of the stamen that <strong>produces pollen</strong> (the male gametophyte). Pollen contains sperm cells.', color:'var(--violet)' },
+    filament: { name:'Filament', info:'The slender stalk of the stamen that holds the anther up, positioning it to release pollen to pollinators or wind.', color:'var(--violet)' },
+    sepal:    { name:'Sepal', info:'The outermost ring of modified leaves that form the <strong>calyx</strong>. Sepals are usually green and <strong>protect the flower bud</strong> before it opens.', color:'#4caf50' },
+    petal:    { name:'Petal', info:'Modified leaves inside the sepals. Often <strong>colorful and scented</strong> to attract pollinators (bees, butterflies, hummingbirds). Part of the corolla.', color:'var(--rose)' },
+  },
+  tissue: {
+    cuticle:         { name:'Cuticle', info:'A waxy, waterproof coating secreted by the epidermis. <strong>Prevents water loss</strong> and protects the leaf from UV and pathogens. Found on both surfaces.', color:'var(--amber)' },
+    'epidermis-upper': { name:'Upper Epidermis (Dermal Tissue)', info:'The outer protective layer of the leaf — <strong>dermal tissue</strong>. Transparent cells allow light through to the photosynthetic layers below. Part of the cuticle-epidermis system.', color:'var(--rose)' },
+    palisade:        { name:'Palisade Mesophyll (Ground Tissue)', info:'Tightly packed, elongated cells just below the upper epidermis. <strong>Primary site of photosynthesis</strong>. Packed with chloroplasts. Also called parenchyma cells.', color:'var(--teal)' },
+    xylem:           { name:'Xylem (Vascular Tissue)', info:'<strong>Dead tubular cells</strong> that form a pipe-like system. Carries water and dissolved minerals <strong>upward</strong> from roots via capillary action and the transpiration pull created by water evaporating from stomata.', color:'var(--sky)' },
+    phloem:          { name:'Phloem (Vascular Tissue)', info:'<strong>Living cells</strong> including sieve-tube members and companion cells. Transports sugars (sucrose) produced in leaves to all plant parts. Movement is driven by the <em>Pressure Flow Hypothesis</em>.', color:'#4a7000' },
+    spongy:          { name:'Spongy Mesophyll (Ground Tissue)', info:'Irregularly shaped cells with <strong>large air spaces</strong> between them. These spaces allow CO₂ and O₂ to circulate freely within the leaf, connecting to stomata below.', color:'var(--teal)' },
+    stomata:         { name:'Stomata &amp; Guard Cells (Dermal Tissue)', info:'Pores in the cuticle mostly on the <strong>leaf underside</strong>. Each stoma is flanked by two <strong>guard cells</strong> that swell or shrink to open/close the pore. Open = CO₂ in + O₂ out, but <em>trade-off</em>: water vapor also escapes (transpiration).', color:'var(--rose)' },
+  }
+};
+
+function showHotspot(diagram, key, dotEl) {
+  const data = hotspotData[diagram][key];
+  const panelId = diagram === 'flower' ? 'flower-info' : 'tissue-info';
+  const panel = document.getElementById(panelId);
+  
+  // Reset all dots in this diagram
+  const diagramEl = document.getElementById(diagram + '-diagram');
+  diagramEl.querySelectorAll('.hotspot-dot').forEach(d => d.classList.remove('active'));
+  dotEl.classList.add('active');
+
+  panel.innerHTML = `<h4 style="color:${data.color}">${data.name}</h4><p>${data.info}</p>`;
+}
+
+// ========== QUIZ DATA ==========
+const quizQuestions = [
+  {
+    q: "Which vascular tissue is made of DEAD cells and transports water upward from roots to leaves?",
+    opts: ["Phloem","Xylem","Parenchyma","Collenchyma"],
+    ans: 1,
+    exp: "✅ Xylem is made of dead tubular cells and carries water and minerals upward via capillary action and transpiration pull."
+  },
+  {
+    q: "A plant bends toward a window over several days. Which hormone causes the cells on the SHADY side to elongate more?",
+    opts: ["Gibberellin","Abscisic acid","Auxin","Ethylene"],
+    ans: 2,
+    exp: "✅ Auxin accumulates on the shaded side of the stem, causing those cells to elongate more — bending the plant toward light (phototropism)."
+  },
+  {
+    q: "Which plant structure is responsible for gas exchange AND is a major site of water loss during transpiration?",
+    opts: ["Cuticle","Stomata","Xylem","Phloem"],
+    ans: 1,
+    exp: "✅ Stomata allow CO₂ in and O₂ out for photosynthesis. The trade-off is that water vapor also escapes — this is transpiration."
+  },
+  {
+    q: "Angiosperms are the most numerous group of plants primarily because of their reproductive success attributed to which THREE structures?",
+    opts: ["Spores, roots, and cuticle","Flowers, fruit, and seeds","Xylem, phloem, and stomata","Sepals, petals, and guard cells"],
+    ans: 1,
+    exp: "✅ Flowering plants (angiosperms) succeed due to flowers (attract pollinators), fruit (aids seed dispersal), and seeds (nourish embryo)."
+  },
+  {
+    q: "During the alternation of generations, which process produces spores from the sporophyte?",
+    opts: ["Mitosis","Fertilization","Meiosis","Transpiration"],
+    ans: 2,
+    exp: "✅ The diploid sporophyte produces haploid spores through MEIOSIS. All other stages (gamete production, sporophyte growth) use mitosis."
+  },
+  {
+    q: "A scientist places fruit-ripening gas near unripe tomatoes and they ripen quickly. Which hormone did the scientist use?",
+    opts: ["Auxin","Cytokinin","Abscisic acid","Ethylene"],
+    ans: 3,
+    exp: "✅ Ethylene is a gaseous plant hormone that stimulates fruit ripening. It is why placing ripe fruit near unripe fruit speeds ripening."
+  },
+  {
+    q: "The Pressure Flow Hypothesis explains how sugars move through the phloem from SOURCE to SINK. Which best describes the energy source for this movement?",
+    opts: ["Capillary action driven by transpiration","Active transport loading sugars → osmosis drives water in → pressure gradient created","Diffusion of sucrose down a concentration gradient","Root pressure pumping sugars upward"],
+    ans: 1,
+    exp: "✅ Sugars are actively loaded into phloem sieve tubes. Water follows by osmosis, creating pressure that drives the sugar solution toward sinks (roots, fruit)."
+  },
+  {
+    q: "A drought-stressed plant closes its stomata to prevent water loss. Which hormone triggers stomatal closure?",
+    opts: ["Auxin","Gibberellin","Cytokinin","Abscisic acid"],
+    ans: 3,
+    exp: "✅ Abscisic acid (ABA) is called the 'stress hormone.' It signals guard cells to close stomata during water stress, preventing further water loss."
+  },
+  {
+    q: "Which tissue type makes up the MAJORITY of the plant body and includes parenchyma, collenchyma, and sclerenchyma cells?",
+    opts: ["Dermal tissue","Vascular tissue","Ground tissue","Meristematic tissue"],
+    ans: 2,
+    exp: "✅ Ground tissue makes up the bulk of the plant. It includes parenchyma (photosynthesis/storage), collenchyma (flexible support), and sclerenchyma (rigid support)."
+  },
+  {
+    q: "How do the TRANSPORT and RESPONSE systems in a plant interact when the plant detects drought conditions?",
+    opts: [
+      "Phloem stops working and xylem begins transporting sugars instead",
+      "Abscisic acid travels through phloem to trigger stomatal closure, reducing water lost in transpiration",
+      "Auxins accumulate in roots, causing the plant to grow upward toward water",
+      "Ethylene is produced in leaves and transported by xylem to signal fruit ripening"
+    ],
+    ans: 1,
+    exp: "✅ This is a perfect B.12(B) question! ABA (response hormone) is produced, travels via phloem (transport system), reaches guard cells, and closes stomata — reducing transpiration water loss."
+  }
+];
+
+let currentQ = 0, score = 0, answered = false;
+
+function loadQuestion() {
+  const q = quizQuestions[currentQ];
+  answered = false;
+  document.getElementById('quiz-q-num').textContent = `Question ${currentQ+1} of ${quizQuestions.length}`;
+  document.getElementById('quiz-question').textContent = q.q;
+  document.getElementById('quiz-progress-bar').style.width = ((currentQ+1)/quizQuestions.length*100)+'%';
+  document.getElementById('quiz-next-btn').style.display = 'none';
+
+  const fb = document.getElementById('quiz-feedback');
+  fb.className = 'quiz-feedback';
+  fb.textContent = '';
+
+  const opts = document.getElementById('quiz-options');
+  opts.innerHTML = '';
+  q.opts.forEach((o, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-opt';
+    div.innerHTML = `<div class="opt-letter">${String.fromCharCode(65+i)}</div><span>${o}</span>`;
+    div.onclick = () => selectAnswer(i, div);
+    opts.appendChild(div);
+  });
+}
+
+function selectAnswer(idx, el) {
+  if (answered) return;
+  answered = true;
+  const q = quizQuestions[currentQ];
+  const opts = document.querySelectorAll('.quiz-opt');
+  opts.forEach(o => o.classList.add('disabled'));
+  
+  const fb = document.getElementById('quiz-feedback');
+  if (idx === q.ans) {
+    score++;
+    el.classList.add('correct');
+    opts[q.ans].querySelector('.opt-letter').textContent = '✓';
+    fb.className = 'quiz-feedback correct show';
+    fb.innerHTML = q.exp;
+  } else {
+    el.classList.add('wrong');
+    opts[idx].querySelector('.opt-letter').textContent = '✗';
+    opts[q.ans].classList.add('correct');
+    opts[q.ans].querySelector('.opt-letter').textContent = '✓';
+    fb.className = 'quiz-feedback wrong show';
+    fb.innerHTML = `❌ Not quite. ${q.exp}`;
+  }
+  document.getElementById('quiz-next-btn').style.display = 'inline-flex';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ < quizQuestions.length) {
+    loadQuestion();
+  } else {
+    showScore();
+  }
+}
+
+function showScore() {
+  document.getElementById('quiz-body').style.display = 'none';
+  const panel = document.getElementById('quiz-score');
+  panel.classList.add('show');
+  const pct = Math.round(score/quizQuestions.length*100);
+  document.getElementById('score-number').textContent = `${score} / ${quizQuestions.length}`;
+  document.getElementById('score-label').textContent = `${pct}% — ${pct>=80?'Great work! Ready for STAAR! 🌟':pct>=60?'Good effort — review the topics you missed!':'Keep studying — you\'ve got this! 🌱'}`;
+  document.getElementById('score-emoji').textContent = pct>=90?'🏆':pct>=80?'🌟':pct>=60?'🌸':'🌱';
+}
+
+function restartQuiz() {
+  currentQ = 0; score = 0;
+  document.getElementById('quiz-body').style.display = 'block';
+  document.getElementById('quiz-score').classList.remove('show');
+  loadQuestion();
+}
+
+// Init quiz
+loadQuestion();
+</script>
+</body>
+</html>
