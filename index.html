@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Colyer — Biology STAAR Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0f1e;
+    --surface: #111827;
+    --surface2: #1a2236;
+    --border: #2a3a55;
+    --accent1: #00d4ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --accent4: #f59e0b;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #0a0f1e 0%, #1a0a3a 100%);
+    border-bottom: 2px solid var(--accent2);
+    padding: 40px;
+    text-align: center;
+  }
+  .site-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--accent1);
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .site-sub {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .staar-badge {
+    display: inline-block;
+    background: var(--accent2);
+    color: white;
+    font-size: 0.8rem;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    max-width: 700px;
+    margin: 40px auto 0;
+    text-align: center;
+    padding: 0 20px;
+  }
+  .intro p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .intro strong { color: var(--accent1); }
+
+  /* ── MODULE GRID ── */
+  .modules {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+
+  .module-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+  }
+  .module-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+
+  .card-header {
+    padding: 28px 24px 20px;
+    position: relative;
+  }
+  .card-header.cell { background: linear-gradient(135deg, #001f2a, #0a0f1e); border-bottom: 3px solid var(--accent1); }
+  .card-header.virus { background: linear-gradient(135deg, #1a0a2a, #0a0f1e); border-bottom: 3px solid var(--accent2); }
+  .card-header.plant { background: linear-gradient(135deg, #0a1a0a, #0a0f1e); border-bottom: 3px solid var(--accent3); }
+
+  .module-num {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .module-num.cell { color: var(--accent1); }
+  .module-num.virus { color: var(--accent2); }
+  .module-num.plant { color: var(--accent3); }
+
+  .module-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .module-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .module-title.cell { color: var(--accent1); }
+  .module-title.virus { color: #a78bfa; }
+  .module-title.plant { color: var(--accent3); }
+
+  .card-body {
+    padding: 20px 24px;
+    flex: 1;
+  }
+  .card-body p {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .feature-list { list-style: none; margin-bottom: 20px; }
+  .feature-list li {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .feature-list li:last-child { border-bottom: none; }
+  .feature-list li span { font-size: 1rem; }
+
+  .launch-btn {
+    display: block;
+    margin: 0 24px 24px;
+    padding: 13px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .launch-btn.cell { background: var(--accent1); color: #000; }
+  .launch-btn.cell:hover { background: #00b8d9; }
+  .launch-btn.virus { background: var(--accent2); color: white; }
+  .launch-btn.virus:hover { background: #6d28d9; }
+  .launch-btn.plant { background: var(--accent3); color: #000; }
+  .launch-btn.plant:hover { background: #059669; }
+
+  /* ── TIPS BANNER ── */
+  .tips {
+    max-width: 1100px;
+    margin: 0 auto 50px;
+    padding: 0 30px;
+  }
+  .tips-box {
+    background: var(--surface2);
+    border: 1px solid var(--accent4);
+    border-radius: 12px;
+    padding: 20px 28px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .tips-box h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--accent4);
+    margin-bottom: 10px;
+    white-space: nowrap;
+  }
+  .tip-items { display: flex; gap: 12px; flex-wrap: wrap; flex: 1; }
+  .tip-item {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    flex: 1;
+    min-width: 160px;
+    line-height: 1.5;
+  }
+  .tip-item strong { color: var(--text); display: block; margin-bottom: 3px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+  footer strong { color: var(--accent1); }
+
+  @media (max-width: 600px) {
+    .site-title { font-size: 2.2rem; }
+    .modules { grid-template-columns: 1fr; padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-title">BIOLOGY STAAR REVIEW</div>
+  <div class="site-sub">Dr. Colyer · 9th Grade Biology</div>
+  <span class="staar-badge">📚 STAAR PREP 2026</span>
+</header>
+
+<div class="intro">
+  <p>Welcome to your interactive Biology STAAR review! Each module below includes <strong>diagrams, comparisons, animations, and practice quizzes</strong> to help you master the material before your exam. Work through each module at your own pace.</p>
+</div>
+
+<div class="modules">
+
+  <!-- MODULE 2 — CELL BIOLOGY -->
+  <div class="module-card">
+    <div class="card-header cell">
+      <div class="module-num cell">Module 2</div>
+      <svg width="100%" height="90" viewBox="0 0 320 90" style="margin-bottom:10px;display:block;">
+        <defs>
+          <radialGradient id="prokGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#2a1a00"/>
+            <stop offset="100%" stop-color="#0a0800"/>
+          </radialGradient>
+          <radialGradient id="eukGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#001f2a"/>
+            <stop offset="100%" stop-color="#0a0f1e"/>
+          </radialGradient>
+        </defs>
+        <!-- PROKARYOTE (left) -->
+        <rect x="18" y="28" width="90" height="44" rx="22" fill="url(#prokGrad)" stroke="#f59e0b" stroke-width="2"/>
+        <!-- Nucleoid DNA -->
+        <ellipse cx="63" cy="50" rx="22" ry="12" fill="none" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="3,2"/>
+        <path d="M48,48 Q55,40 63,48 Q71,56 78,48" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+        <!-- Ribosomes -->
+        <circle cx="35" cy="42" r="3" fill="#94a3b8"/>
+        <circle cx="90" cy="42" r="3" fill="#94a3b8"/>
+        <circle cx="35" cy="58" r="3" fill="#94a3b8"/>
+        <circle cx="90" cy="58" r="3" fill="#94a3b8"/>
+        <!-- Flagellum -->
+        <path d="M18,50 Q8,38 4,24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/>
+        <!-- Pili -->
+        <line x1="40" y1="28" x2="36" y2="14" stroke="#f59e0b" stroke-width="1.2" opacity="0.7"/>
+        <line x1="63" y1="28" x2="63" y2="12" stroke="#f59e0b" stroke-width="1.2" opacity="0.7"/>
+        <line x1="85" y1="30" x2="90" y2="16" stroke="#f59e0b" stroke-width="1.2" opacity="0.7"/>
+        <!-- Label -->
+        <text x="63" y="84" fill="#f59e0b" font-size="9" text-anchor="middle" font-family="sans-serif" font-weight="600">PROKARYOTE</text>
+
+        <!-- Divider -->
+        <line x1="160" y1="10" x2="160" y2="80" stroke="#2a3a55" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- EUKARYOTE (right) -->
+        <ellipse cx="240" cy="50" rx="68" ry="38" fill="url(#eukGrad)" stroke="#00d4ff" stroke-width="2"/>
+        <!-- Nucleus -->
+        <ellipse cx="240" cy="48" rx="26" ry="22" fill="#1a0a3a" stroke="#a78bfa" stroke-width="1.5"/>
+        <circle cx="240" cy="47" r="10" fill="#2a1060" stroke="#7c3aed" stroke-width="1.2"/>
+        <!-- Mitochondrion -->
+        <ellipse cx="192" cy="56" rx="12" ry="6" fill="#2a1800" stroke="#f59e0b" stroke-width="1.2" transform="rotate(-15,192,56)"/>
+        <!-- Chloroplast hint -->
+        <ellipse cx="284" cy="42" rx="11" ry="5" fill="#1a3a00" stroke="#4ade80" stroke-width="1.2"/>
+        <!-- Ribosomes -->
+        <circle cx="196" cy="38" r="2.5" fill="#94a3b8"/>
+        <circle cx="284" cy="58" r="2.5" fill="#94a3b8"/>
+        <!-- Label -->
+        <text x="240" y="84" fill="#00d4ff" font-size="9" text-anchor="middle" font-family="sans-serif" font-weight="600">EUKARYOTE</text>
+      </svg>
+      <div class="module-title cell">Prokaryotic & Eukaryotic Cell Structure</div>
+    </div>
+    <div class="card-body">
+      <p>Explore the two types of cells on Earth, their organelles, and how eukaryotes evolved from prokaryotes through endosymbiosis.</p>
+      <ul class="feature-list">
+        <li><span>📋</span> Cell Theory & History of Discovery</li>
+        <li><span>⚖️</span> Prokaryote vs Eukaryote Comparison</li>
+        <li><span>🖱️</span> Interactive Hotspot Cell Diagrams</li>
+        <li><span>🧬</span> Animated Endosymbiotic Theory</li>
+        <li><span>🎯</span> 10-Question STAAR Practice Quiz</li>
+        <li><span>🏆</span> Wayground STAAR Challenge</li>
+      </ul>
+    </div>
+    <a href="module2_cell_biology.html" target="_blank" class="launch-btn cell">🚀 Launch Module 2</a>
+  </div>
+
+  <!-- MODULE 3 — VIRUSES -->
+  <div class="module-card">
+    <div class="card-header virus">
+      <div class="module-num virus">Module 3</div>
+      <span class="module-icon">🦠</span>
+      <div class="module-title virus">Viruses & Human Disease</div>
+    </div>
+    <div class="card-body">
+      <p>Investigate viral structure, replication cycles, and how viruses cause disease in humans — including immune response and disease prevention.</p>
+      <ul class="feature-list">
+        <li><span>🦠</span> Viral Structure & Classification</li>
+        <li><span>🔄</span> Lytic vs Lysogenic Cycles</li>
+        <li><span>🖱️</span> Interactive Virus Diagrams</li>
+        <li><span>💉</span> Immune Response & Vaccines</li>
+        <li><span>🎯</span> STAAR Practice Quiz</li>
+        <li><span>🏆</span> Wayground STAAR Challenge</li>
+      </ul>
+    </div>
+    <a href="module3_viruses.html" target="_blank" class="launch-btn virus">🚀 Launch Module 3</a>
+  </div>
+
+  <!-- MODULE 4 — PLANT SYSTEMS -->
+  <div class="module-card">
+    <div class="card-header plant">
+      <div class="module-num plant">Module 4</div>
+      <span class="module-icon">🌿</span>
+      <div class="module-title plant">Plant Systems</div>
+    </div>
+    <div class="card-body">
+      <p>Discover how plants are structured and how they function — from photosynthesis and transport systems to reproduction and growth.</p>
+      <ul class="feature-list">
+        <li><span>🌱</span> Plant Cell Structure & Tissues</li>
+        <li><span>☀️</span> Photosynthesis & Cellular Respiration</li>
+        <li><span>🖱️</span> Interactive Plant Diagrams</li>
+        <li><span>💧</span> Transport Systems (Xylem & Phloem)</li>
+        <li><span>🎯</span> STAAR Practice Quiz</li>
+        <li><span>🏆</span> Wayground STAAR Challenge</li>
+      </ul>
+    </div>
+    <a href="module4_plant_systems.html" target="_blank" class="launch-btn plant">🚀 Launch Module 4</a>
+  </div>
+
+</div>
+
+<div class="tips">
+  <div class="tips-box">
+    <div>
+      <h4>⭐ Study Tips</h4>
+    </div>
+    <div class="tip-items">
+      <div class="tip-item"><strong>Use the Diagrams</strong>Click every glowing dot — knowing organelle functions is heavily tested on STAAR.</div>
+      <div class="tip-item"><strong>Take Every Quiz</strong>The practice quizzes mirror real STAAR question styles. Review explanations for missed answers.</div>
+      <div class="tip-item"><strong>Wayground Challenge</strong>After each module quiz, hit the Wayground button for real released STAAR questions!</div>
+      <div class="tip-item"><strong>Review Daily</strong>10 minutes per module per day beats cramming the night before every time.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Dr. Colyer · 9th Grade Biology</strong> · Biology STAAR Review Modules · All content aligned to TEKS
+</footer>
+
+</body>
+</html>

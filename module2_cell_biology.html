@@ -34,24 +34,10 @@
   header {
     background: linear-gradient(135deg, #0a0f1e 0%, #1a0a3a 100%);
     border-bottom: 2px solid var(--accent2);
-    position: sticky; top: 0; z-index: 100;
-  }
-  .header-top {
     padding: 20px 40px;
     display: flex; align-items: center; gap: 20px;
+    position: sticky; top: 0; z-index: 100;
   }
-  .teks-banner {
-    background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(6px);
-    border-top: 1px solid rgba(255,255,255,0.12);
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    padding: 11px 40px;
-    font-size: 0.88rem;
-    color: rgba(255,255,255,0.9);
-    font-weight: 500;
-    line-height: 1.5;
-  }
-  .teks-banner strong { color: var(--accent1); font-size: 0.92rem; }
   .logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent1); letter-spacing: 3px; }
   .subtitle { font-size: 0.8rem; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; }
   .badge { margin-left: auto; background: var(--accent2); color: white; font-size: 0.72rem; padding: 4px 12px; border-radius: 20px; font-weight: 600; letter-spacing: 1px; }
@@ -469,16 +455,11 @@
 <body>
 
 <header>
-  <div class="header-top">
-    <div>
-      <div class="logo">CELL BIO</div>
-      <div class="subtitle">Module 2 — 9th Grade Biology</div>
-    </div>
-    <div class="badge">STAAR PREP</div>
+  <div>
+    <div class="logo">CELL BIO</div>
+    <div class="subtitle">Module 2 — 9th Grade Biology</div>
   </div>
-  <div class="teks-banner">
-    <strong>TEKS B.5(B)</strong> — Compare and contrast prokaryotic and eukaryotic cells, including their complexity, and compare and contrast scientific explanations for cellular complexity.
-  </div>
+  <div class="badge">STAAR PREP</div>
 </header>
 
 <nav class="tabs">
